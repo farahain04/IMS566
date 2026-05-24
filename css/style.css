@@ -32,7 +32,6 @@ h1 {
   margin-top: 0; 
 }
 
-/* Icons Global Spacing */
 i {
   margin-right: 6px;
 }
@@ -61,7 +60,6 @@ h1 i, h2 i {
   overflow: hidden;
 }
 
-/* SIDEBAR LAYOUT CONFIG */
 .sidebar {
   width: 240px; 
   height: 100vh;
@@ -122,7 +120,6 @@ h1 i, h2 i {
   overflow: hidden;
 }
 
-/* CONTENT CONTAINER WRAPPER */
 .content-wrapper {
   flex-grow: 1;
   height: 100vh;
@@ -238,7 +235,6 @@ main {
   margin-right: 6px;
 }
 
-/* DROPDOWN OPTIONS SYSTEM PANEL */
 .dropdown-actions-panel {
   display: none;
   position: absolute;
@@ -360,7 +356,6 @@ main {
   color: var(--txt); 
 }
 
-/* Legacy Fallback Cards Block */
 .dashboard-cards {
   display: flex;
   gap: 22px;
@@ -416,7 +411,6 @@ main {
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* Quick Stats List rows */
 .stats-list {
   list-style: none;
   padding: 0;
@@ -437,6 +431,39 @@ main {
 /* ==========================================================================
    7. INTERACTIVE INPUT FORMS & DATA TABLES
    ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #eef2f4;
+    padding: 15px;
+    border-radius: 8px;
+    background: var(--card);
+    }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f4f4f4;
+    text-align: right;
+    }
+
+  td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      text-align: left;
+      margin-right: 10px;
+      color: #555;
+      }
+  }    
+
+
 table {
     margin-top: 1.7em;
     width: 100%;
@@ -445,10 +472,9 @@ table {
     border-radius: 8px;
     box-shadow: 0 1px 10px rgba(42,42,42,0.06);
     overflow: hidden;
-    table-layout: fixed; /* Ensures column widths are respected */
+    table-layout: auto; 
 }
 
-/* Force the first column (No.) to be consistent everywhere */
 table th:first-child, 
 table td:first-child {
     width: 40px !important; 
@@ -478,7 +504,6 @@ tr:last-child td {
   border-bottom: none;
 }
 
-/* Action Buttons Grid Setup */
 th:last-child, td:last-child {
   text-align: center;
   min-width: 180px;
@@ -504,7 +529,6 @@ th:last-child, td:last-child {
 .action-btns .del:hover { background: #7f1d1d; }
 .action-btns .info { background: var(--primary); }
 
-/* Global Form Element Wrappers */
 button, input[type=submit] {
   padding: 8px 18px;
   border: none;
@@ -537,12 +561,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
   border: 1.2px solid var(--primary);
 }
 
-/* 1. Hide the admin elements and column pieces cleanly */
 body:not(.role-admin) .admin-only {
   display: none !important;
 }
 
-/* 2. RE-BALANCE TABLE LAYOUT FOR NON-ADMINS */
 body:not(.role-admin) #bookTable th,
 body:not(.role-admin) #bookTable td {
   width: auto !important; 
@@ -597,7 +619,6 @@ body:not(.role-admin) #bookTable th:first-child {
   cursor: pointer;
 }
 
-/* Toasts Alert Bar styles */
 #notification {
   position: fixed;
   bottom: 20px;
@@ -656,21 +677,222 @@ body.role-user .admin-only {
 }
 
 /* ==========================================================================
-   10. MOBILE RESPONSIVE MEDIA QUERIES (UPDATED)
+   10. PROFILE SETTINGS PAGE STYLES (Moved from HTML)
    ========================================================================== */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
 
+.settings-sidebar-card,
+.settings-section-card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.settings-sidebar-card {
+  padding: 24px;
+  text-align: center;
+  height: fit-content;
+}
+
+.profile-avatar-wrapper {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+}
+
+.profile-large-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+}
+
+.meta-user-role {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(37,99,235,0.1);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.settings-main-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.settings-section-card.security-card { border-top: 4px solid #ef4444; }
+.settings-section-card.registry-card { border-top: 4px solid #22c55e; }
+.settings-section-card:not(.security-card):not(.registry-card) { border-top: 4px solid var(--primary); }
+
+.card-header-block {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.card-header-block h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-body-block {
+  padding: 24px;
+}
+
+.form-row-layout {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.dual-column {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-field-group input,
+.form-field-group select {
+  width: 100%;
+  max-width: 100%;
+  height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.form-field-group input:focus,
+.form-field-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.field-instruction-text {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.action-button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-action {
+  border: none;
+  border-radius: 8px;
+  height: 44px;
+  padding: 0 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: #1d4ed8; }
+.btn-danger { background: #ef4444; color: #fff; }
+.btn-danger:hover { background: #dc2626; }
+
+.registry-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.registry-system-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 100%; 
+  
+}
+
+.registry-system-table td, 
+.registry-system-table th {
+    padding: 12px;
+    border-bottom: 1px solid #eef2f4;
+    white-space: normal; /* CHANGED: Was 'nowrap', allowing text to wrap */
+    word-wrap: break-word;
+}
+
+.registry-system-table th { background: #f8fafc; }
+
+.badge-privilege {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.badge-admin { background: #dbeafe; color: #1d4ed8; }
+.badge-manager { background: #fef3c7; color: #92400e; }
+.badge-user { background: #dcfce7; color: #166534; }
+
+#systemToastAlert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  z-index: 99999;
+  display: none;
+  animation: slideIn .25s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ==========================================================================
+   11. UNIFIED MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
 @media screen and (max-width: 992px) {
   .dashboard-metrics-container {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  /* 1. Off-Canvas Sidebar Setup */
   .sidebar {
     position: fixed;
     top: 0;
-    left: -260px; /* Hidden by default on mobile */
+    left: -260px; 
     height: 100vh;
     z-index: 9999;
     box-shadow: 4px 0 10px rgba(0,0,0,0.1);
@@ -699,6 +921,9 @@ body.role-user .admin-only {
     padding: 14px 24px;
   }
 
+  .app-container {
+    width: 100vw;
+  }
 
   .content-wrapper {
     margin-left: 0 !important;
@@ -706,7 +931,6 @@ body.role-user .admin-only {
     padding-bottom: 20px;
   }
 
-  /* Adjust Navbar styling for small screens */
   .main-top-navbar {
     padding: 10px 15px;
   }
@@ -719,9 +943,7 @@ body.role-user .admin-only {
     display: none; 
   }
 
-  table {
-    min-width: 750px; 
-  }
+  /* DELETED the forced min-width 750px here to allow tables to fit */
   
   .dashboard-metrics-container, .dashboard-cards {
     grid-template-columns: 1fr !important; 
@@ -745,24 +967,57 @@ body.role-user .admin-only {
   .chart-stats-container {
     flex-direction: column;
   }
+
+  .settings-grid {
+    grid-template-columns: 1fr !important; 
+    gap: 16px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .settings-sidebar-card, 
+  .settings-section-card {
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-header-block,
+  .card-body-block {
+    padding: 15px !important;
+  }
+
+  .action-button-row {
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+
+  .profile-avatar-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .registry-table-container {
+    overflow-x: auto;
+    width: 100%;
+    display: block;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  /* smaller adjustments for very tight phone screens */
   .chart-wrapper-fixed {
     height: 250px !important;
   }
-  
   .metric-card-modern {
     padding: 15px !important;
   }
-  
   .dashboard-header h1 {
     font-size: 1.3rem;
   }
 }
 
-/* sidebar Overlay for Mobile */
 .sidebar-overlay {
   display: none;
   position: fixed;
@@ -770,49 +1025,12 @@ body.role-user .admin-only {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 9998; 
 }
 
-/* Only show overlay when sidebar is active on mobile */
 @media screen and (max-width: 768px) {
   body.sidebar-collapsed .sidebar-overlay {
-    display: block;
-  }
-}
-/* Mobile Responsive Overrides */
-@media screen and (max-width: 768px) {
-  /* 1. Ensure the app container doesn't overflow horizontally */
-  .app-container {
-    width: 100vw;
-  }
-  
-
-  /* Force the settings grid to stack vertically and remove fixed column widths */
-  .settings-grid {
-    display: grid;
-    grid-template-columns: 1fr !important; 
-    gap: 16px;
-    padding: 10px;
-    margin-top: 10px;
-  }
-
-  /* Ensure the cards take up 100% of the mobile screen */
-  .settings-sidebar-card, 
-  .settings-section-card {
-    width: 100%;
-    margin: 0;
-  }
-
-  /* Ensure forms inside cards don't overflow */
-  .card-body-block {
-    padding: 15px !important;
-  }
-  
-  /* Fix the table to allow scrolling instead of breaking the layout */
-  .registry-table-container {
-    overflow-x: auto;
-    width: 100%;
     display: block;
   }
 }
