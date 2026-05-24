@@ -26,12 +26,12 @@ How to Test the Login:
 
 Frameworks & Libraries Used:
 - Frontend: HTML5, CSS3, Vanilla JavaScript (ES6+).
-- Charts: Canvas-based chart rendering.
+- Charts: Canvas-based chart rendering (Chart.js)
 - Animations: Vanta.js (Clouds effect) and Three.js for the login/registration background.
 - Icons: FontAwesome and Bootstrap Icons for the UI.
 - Storage: Web Browser `localStorage` (handles data persistence without a backend).
 
-Known Issues & Troubleshooting
+Known Issues & Troubleshooting:
 - Data Persistence: Because this uses `localStorage`, if you clear your browser cache, all book and user data will be wiped.
 - Broken Layout: If the sidebar or tables look weird after an update, try refreshing the page; the CSS handles mobile breakpoints automatically.
 
