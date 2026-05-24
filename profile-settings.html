@@ -7,273 +7,21 @@
   <link rel="stylesheet" id="theme-style" href="css/darkmode.css" disabled>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-  <style>
-    .settings-grid {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 24px;
-      margin-top: 20px;
-    }
+<style>
 
-    .settings-sidebar-card,
-    .settings-section-card {
-      background: var(--card);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      overflow: hidden;
-    }
-
-    .settings-sidebar-card {
-      padding: 24px;
-      text-align: center;
-      height: fit-content;
-    }
-
-    .profile-avatar-wrapper {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 16px;
-    }
-
-    .profile-large-avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary);
-    }
-
-    .meta-user-role {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      background: rgba(37,99,235,0.1);
-      color: var(--primary);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .settings-main-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .settings-section-card.security-card {
-      border-top: 4px solid #ef4444;
-    }
-
-    .settings-section-card.registry-card {
-      border-top: 4px solid #22c55e;
-    }
-
-    .settings-section-card:not(.security-card):not(.registry-card) {
-      border-top: 4px solid var(--primary);
-    }
-
-    .card-header-block {
-      padding: 18px 24px;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .card-header-block h2 {
-      margin: 0;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card-body-block {
-      padding: 24px;
-    }
-
-    .form-row-layout {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .dual-column {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .form-field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-field-group label {
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .form-field-group input,
-    .form-field-group select {
-      width: 100%;
-      max-width: 100%;
-      height: 44px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      padding: 0 14px;
-      font-size: 0.95rem;
-      background: #fff;
-    }
-
-    .form-field-group input:focus,
-    .form-field-group select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-    }
-
-    .field-instruction-text {
-      font-size: 0.78rem;
-      color: #6b7280;
-    }
-
-    .action-button-row {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .btn-action {
-      border: none;
-      border-radius: 8px;
-      height: 44px;
-      padding: 0 18px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: 0.2s;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-    }
-
-    .btn-danger {
-      background: #ef4444;
-      color: #fff;
-    }
-
-    .btn-danger:hover {
-      background: #dc2626;
-    }
-
-    .registry-table-container {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    .registry-system-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-    }
-
-    .registry-system-table th,
-    .registry-system-table td {
-      padding: 14px;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      text-align: left;
-    }
-
-    .registry-system-table th {
-      background: #f8fafc;
-    }
-
-    .badge-privilege {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .badge-admin {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .badge-manager {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .badge-user {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    #systemToastAlert {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 14px 18px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      z-index: 99999;
-      display: none;
-      animation: slideIn .25s ease;
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @media screen and (max-width: 992px) {
-      .settings-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media screen and (max-width: 768px) {
-      .dual-column {
-        grid-template-columns: 1fr;
-      }
-
-      .card-header-block,
-      .card-body-block {
-        padding: 16px;
-      }
-
-      .action-button-row {
-        flex-direction: column;
-      }
-
-      .btn-action {
-        width: 100%;
-      }
-
-      .profile-avatar-wrapper {
-        width: 90px;
-        height: 90px;
-      }
-    }
-  </style>
+  table {
+    margin-top: 1.7em;
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(42,42,42,0.06);
+    overflow: hidden;
+    table-layout: fixed; 
+}
+</style>
 <body>
 
   <div class="app-container">
@@ -343,7 +91,7 @@
             
             <div class="settings-section-card">
               <div class="card-header-block">
-                <h2><i class="fa-regular fa-id-card" style="color: var(--primary-color);"></i> Profile Information</h2>
+                <h2><i class="fa-regular fa-id-card" style="color: var(--primary);"></i> Profile Information</h2>
               </div>
               <div class="card-body-block">
                 <form id="profileInfoForm">
@@ -424,11 +172,11 @@
                   <table class="registry-system-table" id="adminUserTable">
                     <thead>
                       <tr>
-                        <th style="width: 40px; text-align: center;">No.</th>
-                        <th>Full Name</th>
-                        <th>Username</th>
-                        <th>Email Address</th>
-                        <th>Security Privilege Tier</th>
+                        <th data-label="No." style="width: 40px; text-align: center;">No.</th>
+                        <th data-label="Full Name">Full Name</th>
+                        <th data-label="Username">Username</th>
+                        <th data-label="Email Address">Email Address</th>
+                        <th data-label="Security Privilege Tier">Security Privilege Tier</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -515,7 +263,6 @@
         });
       }
 
-      // read initialization structures from browser memory storage
       const sessionUser = JSON.parse(localStorage.getItem('user') || 'null');
       let coreUsersList = JSON.parse(localStorage.getItem('users') || '[]');
       
@@ -524,11 +271,9 @@
         return;
       }
 
-      // sync user profile options 
       const roleSelect = document.getElementById('infoRole');
       const roleNotice = document.getElementById('roleRestrictionNotice');
       
-      // SECURITY SEKTAN LAYER
       if (sessionUser.role === 'user') {
         if (roleSelect) {
           roleSelect.value = "user";
@@ -543,40 +288,32 @@
       
         const overlay = document.getElementById('sidebarOverlay');
 
-        // Function to close sidebar
         function closeSidebar() {
           document.body.classList.remove('sidebar-collapsed');
         }
 
-        // Event Listeners
         if (overlay) {
           overlay.addEventListener('click', closeSidebar);
         }
 
-      
-      // Populate interface inputs and labels
       function refreshInterfaceDisplays() {
         const nameText = sessionUser.name || sessionUser.username;
         const computedRole = sessionUser.role || 'admin';
         const computedEmail = sessionUser.email || "no-email@librarylms.com";
 
-        // Logic to match other pages
         let displayRoleName = "Librarian Staff";
         if(computedRole === 'admin') displayRoleName = "System Administrator";
         if(computedRole === 'manager') displayRoleName = "Library Manager";
 
-        // Set form object variables
         document.getElementById('infoUsername').value = sessionUser.username;
         document.getElementById('infoFullName').value = nameText;
         if(sessionUser.role !== 'user' && roleSelect) roleSelect.value = computedRole;
         document.getElementById('infoEmail').value = sessionUser.email || '';
 
-        // Set left column overview card data
         document.getElementById('sidebarCardName').textContent = nameText;
         document.getElementById('sidebarCardEmail').textContent = computedEmail; 
         document.getElementById('sidebarCardRole').textContent = displayRoleName.toUpperCase();
 
-        // Update shared navbar containers
         document.getElementById('navProfileName').textContent = nameText;
         document.getElementById('dropdownRoleTitle').textContent = displayRoleName;
         document.getElementById('dropdownEmailText').textContent = computedEmail;
@@ -590,7 +327,6 @@
 
         if (!registrySection || !tbody) return;
 
-        // Gatekeeping guard check: Only allow administrative viewing layers
         if (sessionUser.role !== 'admin') {
           registrySection.style.display = 'none';
           return;
@@ -600,7 +336,6 @@
         tbody.innerHTML = '';
 
         if (coreUsersList.length === 0) {
-          // UPDATED: Changed colspan="4" to colspan="5"
           tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#94a3b8;"><i>No system profiles recorded inside live database cache.</i></td></tr>`;
           return;
         }
@@ -623,10 +358,8 @@
         });
       }
 
-      // Fire administrative table builder logic
       renderAdminUserRegistry();
 
-      // Trigger Profile Information Submission Change
       document.getElementById('profileInfoForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -635,13 +368,11 @@
         
         const targetRole = sessionUser.role === 'user' ? 'user' : roleSelect.value;
 
-        // 1. Save changes to current session object storage
         sessionUser.name = targetName;
         sessionUser.role = targetRole;
         sessionUser.email = targetEmail;
         localStorage.setItem('user', JSON.stringify(sessionUser));
 
-        // 2. CORE STORAGE SYNC
         coreUsersList = JSON.parse(localStorage.getItem('users') || '[]');
         let userMatchIndex = coreUsersList.findIndex(u => u.username.toLowerCase() === sessionUser.username.toLowerCase());
         
@@ -655,13 +386,11 @@
         refreshInterfaceDisplays();
         renderAdminUserRegistry(); 
         
-        // Ensure manual call fallback in main.js handles dark background reapplications cleanly
         if(typeof initTheme === 'function') initTheme();
         
         showNotificationToast("Profile records modified successfully.", "#28a745");
       });
 
-      // Trigger Password Credentials Form Processing
       document.getElementById('securityCredentialsForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -669,7 +398,6 @@
         const newInput = document.getElementById('securityNewPass').value;
         const confirmInput = document.getElementById('securityConfirmPass').value;
 
-        // Verification logic checks read from real users registry arrays
         coreUsersList = JSON.parse(localStorage.getItem('users') || '[]');
         let currentDBUser = coreUsersList.find(u => u.username.toLowerCase() === sessionUser.username.toLowerCase());
         const actualSecret = currentDBUser ? (currentDBUser.password || currentDBUser.pass) : sessionUser.password;
@@ -684,11 +412,9 @@
           return;
         }
 
-        // Commit updating execution inside session storage
         sessionUser.password = newInput;
         localStorage.setItem('user', JSON.stringify(sessionUser));
         
-        // Sync password modification execution inside central database array
         if (currentDBUser) {
           if(currentDBUser.password) currentDBUser.password = newInput;
           if(currentDBUser.pass) currentDBUser.pass = newInput;
@@ -699,7 +425,6 @@
         showNotificationToast("Credential records modified. Use new variables at next access initialization.", "#28a745");
       });
 
-      // System notification tracking window popups
       function showNotificationToast(message, bgColor) {
         const toast = document.getElementById('systemToastAlert');
         if (toast) {
